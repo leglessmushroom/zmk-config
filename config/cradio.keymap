@@ -8,7 +8,11 @@
 // Home row mods macro&trans
 #define HRML(k1,k2,k3,k4) &ht LSHFT k1  &ht LALT k2  &ht LCTRL k3  &ht LGUI k4
 #define HRMR(k1,k2,k3,k4) &ht RGUI k1  &ht LCTRL k2  &ht RALT k3  &ht RSHFT k4
-
+#define DEFAULT 0
+#define gamer   1
+#define num     2
+#define sym     3
+#define blue    4
 / {
     behaviors {
         ht: hold_tap {
@@ -26,8 +30,8 @@
     conditional_layers {
        compatible = "zmk,conditional-layers";
       tri_layer {
-           if-layers = <1 2>;
-           then-layer = <3>;
+           if-layers = <sym num>;
+           then-layer = <blue>;
        };
     };
 
@@ -45,12 +49,27 @@
         //│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │   delete │
             &kp Z      &kp X      &kp C      &kp V      &kp B          &kp N      &kp M      &kp COMMA  &kp DOT    &kp DEL
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                            &lt 2 TAB   &kp SPACE     &lt 1 ENTER &kp BSPC
+                                            &lt sym TAB   &kp SPACE  &lt num ENTER &kp BSPC
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
-
-        right_layer {
+        gamer_layer {
+            bindings = <
+        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
+        //│          │          │          │          │          │   │          │          │          │          │         │
+            &trans     &trans     &trans     &trans        &trans       &trans     &trans     &trans     &trans    &trans
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │          │          │          │          │   │          │          │          │          │          │
+             &kp A      &kp S       &kp D     &kp F      &trans         &trans     &trans     &trans     &trans     &trans
+        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
+        //│          │          │          │          │          │   │          │          │          │          │          │
+            &trans     &trans     &trans      &trans    &trans          &trans     &trans     &trans     &trans   &tog gamer 
+        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
+                                             &kp TAB     &trans         &trans    &kp ESC  
+        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
+            >;
+        };
+        num_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│ /        │  7       │  8       │  9       │     *    │   │          │    play  │          │          │          │
@@ -60,7 +79,7 @@
            &kp LPAR   &mt F4 N4  &mt F5 N5  &mt F6 N6 &mt F12 MINUS   &kp LEFT   &kp DOWN   &kp UP   &kp RIGHT  &kp C_VOL_UP
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│ )        │  1       │  2       │  3       │   +      │   │          │          │          │          │          │
-           &kp RPAR   &mt F1 N1  &mt F2 N2  &mt F3 N3  &kp PLUS         &to 1     &to 0      &trans     &trans &kp C_VOL_DN
+           &kp RPAR   &mt F1 N1  &mt F2 N2  &mt F3 N3  &kp PLUS         &trans     &trans      &trans     &trans &kp C_VOL_DN
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
         //                                       0         .
                                             &mt F10 N0 &kp DOT        &trans     &trans
@@ -68,28 +87,28 @@
             >;
         };
 
-        left_layer {
+        sym_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│    ~     │  [       │     ]    │      {   │     }    │   │          │          │          │          │   esc    │
-           &kp TILDE    &kp LBKT  &kp RBKT   &kp LBRC   &kp RBRC       &trans     &trans     &trans     &trans     &kp ESC
+        //│    ~     │  [       │     ]    │      {   │     }    │   │          │          │          │          │          │
+           &kp TILDE    &kp LBKT  &kp RBKT   &kp LBRC   &kp RBRC       &trans     &trans     &trans     &trans     &trans 
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  !       │  @       │  #       │  $       │  %       │   │     ^    │   &      │    _     │  \       │      ?   │
             &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp CARET &kp AMPS    &kp UNDER  &kp BSLH   &kp QMARK
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│  gamer   │ cut      │copy      │  paste   │          │   │          │          │     '    │  "       │    |     │
-            &to 4     &kp LC(X)  &kp LC(C)  &kp LC(V)   &trans         &to 2     &to 0    &kp SQT   &kp DQT   &kp PIPE
+           &tog gamer     &kp LC(X)  &kp LC(C)  &kp LC(V)   &trans         &trans     &trans    &kp SQT   &kp DQT   &kp PIPE
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     &trans
+                                             &trans     &trans         &trans     
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯                                        
             >;
         };
 
-        tri_layer {
+        blue_layer {
             bindings = <
         //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
         //│ RESET    │          │          │          │PROFILE 0 │   │          │          │          │          │  RESET   │
-            &sys_reset     &trans     &trans     &trans    &bt BT_SEL 0    &trans     &trans     &trans     &trans      &sys_reset
+            &sys_reset     &trans     &trans     &trans    &bt BT_SEL 0    &trans     &trans     &trans     &trans  &sys_reset
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
         //│BOOTLOADER│          │          │          │PROFILE 1 │   │          │          │          │          │BOOTLOADER│
           &bootloader  &trans     &trans     &trans    &bt BT_SEL 1    &trans     &trans     &trans     &trans    &bootloader
@@ -101,21 +120,6 @@
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
             >;
         };
-        gamer_layer {
-            bindings = <
-        //╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮
-        //│          │          │          │          │          │   │          │          │          │          │  esc     │
-            &trans     &trans     &trans     &trans        &trans       &trans     &trans     &trans     &trans    &kp ESC
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │   │          │          │          │          │          │
-             &kp A      &kp S       &kp D     &kp F      &trans         &trans     &trans     &trans     &trans     &trans
-        //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │          │          │          │          │   │          │          │          │          │          │
-            &trans     &trans     &trans      &trans    &trans          &trans     &trans     &trans     &trans     &to 4 
-        //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &kp TAB     &trans         &trans    &trans  
-        //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯
-            >;
-        };
+        
     };
 };
