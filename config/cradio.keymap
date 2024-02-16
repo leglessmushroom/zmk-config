@@ -77,8 +77,8 @@
         //│  !       │  @       │  #       │  $       │  %       │   │     ^    │   &      │    _     │  \       │      ?   │
             &kp EXCL   &kp AT     &kp HASH   &kp DLLR   &kp PRCNT      &kp CARET &kp AMPS    &kp UNDER  &kp BSLH   &kp QMARK
         //├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤
-        //│          │ cut      │copy      │  paste   │          │   │          │          │     '    │  "       │    |     │
-            &trans     &kp LC(X)  &kp LC(C)  &kp LC(V)     &trans         &to 2     &to 0    &kp SQT   &kp DQT   &kp PIPE
+        //│  gamer   │ cut      │copy      │  paste   │          │   │          │          │     '    │  "       │    |     │
+            &to 4     &kp LC(X)  &kp LC(C)  &kp LC(V)   &trans         &to 2     &to 0    &kp SQT   &kp DQT   &kp PIPE
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
                                              &trans     &trans         &trans     &trans
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯                                        
