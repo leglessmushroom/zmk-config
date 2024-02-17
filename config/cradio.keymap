@@ -99,7 +99,7 @@
         //│  gamer   │ cut      │copy      │  paste   │          │   │          │          │     '    │  "       │    |     │
            &tog gamer     &kp LC(X)  &kp LC(C)  &kp LC(V)   &trans         &trans     &trans    &kp SQT   &kp DQT   &kp PIPE
         //╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯
-                                             &trans     &trans         &trans     
+                                             &trans     &trans         &trans     &kp ESC
         //                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯                                        
             >;
         };
